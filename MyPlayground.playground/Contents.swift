@@ -9,12 +9,18 @@ import PlaygroundSupport
 //
 //let numa = addTwoNum(num1: 100, num2: 50)
 
+//
+//let vc = ViewController01()
+//let nav = UINavigationController(rootViewController: vc)
+//PlaygroundPage.current.liveView = nav
 
-let vc = ViewController01()
-let nav = UINavigationController(rootViewController: vc)
-PlaygroundPage.current.liveView = nav
+var aaa: String = "name"
 
+let bbb : String = "name"
 
+aaa = "age"
+
+print("\(bbb)")
 
 
 
