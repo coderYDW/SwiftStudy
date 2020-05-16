@@ -109,5 +109,37 @@ import PlaygroundSupport
 //    let count = a.unsafelyUnwrapped.count
 //}
 
-
-
+//字符串的初始化
+//let a = ""
+//if a.isEmpty {
+//    print("a is empty")
+//}
+//
+//let b = String()
+//if b.isEmpty {
+//    print("b is empty")
+//}
+//
+//let c = """
+//1\
+//2\
+//3
+//4
+//5
+//"""
+//print(c)
+//
+//let c = """
+//    1
+//    2
+//        3
+//    4
+//    5\"\"\"
+//    """
+//print(c)
+//
+////let a = #"1\#n2\n3"#
+////print(a)
+//
+//let b = ##"1\#"#n2\n3"##
+//print(b)
