@@ -143,3 +143,36 @@ import PlaygroundSupport
 //
 //let b = ##"1\#"#n2\n3"##
 //print(b)
+
+//字符串是值传递
+//let a = "Hello"
+//var b = a
+//print(a == b) // true
+//b += " world"
+//print(b)
+//print(a == b) //false
+//
+////访问字符串中的每一个字符
+//for c in a {
+//    print(c)
+//}
+////字符串插值
+//let c = "6 * 7 = \(6*7)"
+//print(c)
+
+//子字符串
+//let string = "Hello,world"
+//let index = string.firstIndex(of: ",") ?? string.endIndex
+//let subString = string[string.startIndex ..< index]
+//print(subString)
+//let newString = String(subString)
+//print(newString)
+//
+////前缀和后缀的判断
+//let string1 = "Hello"
+//print(string == string1)
+//print(string.hasPrefix(string1))
+//print(string.hasSuffix("world"))
+
+
+
