@@ -174,5 +174,39 @@ import PlaygroundSupport
 //print(string.hasPrefix(string1))
 //print(string.hasSuffix("world"))
 
+////赋值运算符
+//var a = 10
+//let b = 10
+//// = 没有返回值,不能作为判断条件
+//if a == b {
+//    print("==")
+//}
+//
+////求余数
+//print(9 % 2)   // 1
+//print(-9 % 2)  // -1
+//print(9 % -2)  // 1
+//print(-9 % -2) // -1
 
+////溢出运算符
+//var a: UInt8 = 255
+////let b = a + 1
+//let b = a &+ 1
+//print(b)
 
+//合并空值运算符
+var a: Int? = 9
+print(a!)
+//当a等于nil的时候强制展开会报错
+a = nil
+//print(a!)
+print(a ?? 10)
+
+func getNumber () -> Int {
+    print("GetNumber")
+    return 8
+}
+var b: Int? = 10
+print(b ?? getNumber()) //方法没有被执行
+b = nil
+print(b ?? getNumber()) //方法被执行
