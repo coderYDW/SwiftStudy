@@ -354,29 +354,29 @@ import PlaygroundSupport
 //var nums02: [UInt] = [1,1,1,2,2,2,6]
 //print(findOnceNum(nums: nums02))
 
-//运算符的重载
-struct Vecter2D: Equatable {
-    var x = 0.0
-    var y = 0.0
-}
-
-extension Vecter2D {
-    static func + (left: Vecter2D, right: Vecter2D) -> Vecter2D {
-        return Vecter2D(x: left.x + right.x, y: left.y + right.y)
-    }
-}
-
-extension Vecter2D {
-    static prefix func - (v: Vecter2D) -> Vecter2D {
-        return Vecter2D(x: -v.x, y: -v.y)
-    }
-}
-//需要修改外部变量的值需要添加inout参数
-extension Vecter2D {
-    static func += (left: inout Vecter2D, right: Vecter2D) {
-        left =  left + right
-    }
-}
+////运算符的重载
+//struct Vecter2D: Equatable {
+//    var x = 0.0
+//    var y = 0.0
+//}
+//
+//extension Vecter2D {
+//    static func + (left: Vecter2D, right: Vecter2D) -> Vecter2D {
+//        return Vecter2D(x: left.x + right.x, y: left.y + right.y)
+//    }
+//}
+//
+//extension Vecter2D {
+//    static prefix func - (v: Vecter2D) -> Vecter2D {
+//        return Vecter2D(x: -v.x, y: -v.y)
+//    }
+//}
+////需要修改外部变量的值需要添加inout参数
+//extension Vecter2D {
+//    static func += (left: inout Vecter2D, right: Vecter2D) {
+//        left =  left + right
+//    }
+//}
 //等价运算符的重载需要遵循Equatable协议
 //extension Vecter2D: Equatable {
 //    static func == (left: Vecter2D, right: Vecter2D) -> Bool {
@@ -392,44 +392,76 @@ extension Vecter2D {
 //print(v1,v2)
 //print(v1 == v2)
 
-//自定义前置运算符
-prefix operator +++
-extension Vecter2D {
-    static prefix func +++(vecter: inout Vecter2D) -> Vecter2D {
-        vecter += vecter
-        return vecter
-    }
-}
-
+////自定义前置运算符
+//prefix operator +++
+//extension Vecter2D {
+//    static prefix func +++(vecter: inout Vecter2D) -> Vecter2D {
+//        vecter += vecter
+//        return vecter
+//    }
+//}
+//
+////var v1 = Vecter2D(x: 1, y: 1)
+////var v2 = +++v1
+////print(v1,v2)
+//
+////自定义中置运算符
+//infix operator +-: AdditionPrecedence
+//extension Vecter2D {
+//    static func +-(v1: Vecter2D, v2: Vecter2D) -> Vecter2D {
+//        return Vecter2D(x: v1.x + v2.x, y: v1.y - v2.y)
+//    }
+//}
+//
+//infix operator *^: MyPrecedence
+//extension Vecter2D {
+//    static func *^(left: Vecter2D, right: Vecter2D) -> Vecter2D {
+//        return Vecter2D(x: left.x * right.x, y: left.y * left.y + right.y * right.y)
+//    }
+//}
+////自定义优先级和结合性
+//precedencegroup MyPrecedence {
+//    associativity: left
+//    lowerThan: AdditionPrecedence
+//}
+//
 //var v1 = Vecter2D(x: 1, y: 1)
-//var v2 = +++v1
-//print(v1,v2)
+//var v2 = Vecter2D(x: 2, y: 2)
+//var v3 = Vecter2D(x: 3, y: 3)
+//print(v1 +- v2 *^ v3)
 
-//自定义中置运算符
-infix operator +-: AdditionPrecedence
-extension Vecter2D {
-    static func +-(v1: Vecter2D, v2: Vecter2D) -> Vecter2D {
-        return Vecter2D(x: v1.x + v2.x, y: v1.y - v2.y)
-    }
-}
+//遍历字典
+//let dict = ["spider": 8, "tiger": 4, "duck": 2]
+//for ani in dict {
+//    print("\(ani.key) have \(ani.value) legs")
+//}
 
-infix operator *^: MyPrecedence
-extension Vecter2D {
-    static func *^(left: Vecter2D, right: Vecter2D) -> Vecter2D {
-        return Vecter2D(x: left.x * right.x, y: left.y * left.y + right.y * right.y)
-    }
-}
-//自定义优先级和结合性
-precedencegroup MyPrecedence {
-    associativity: left
-    lowerThan: AdditionPrecedence
-}
+//for (name, legCount) in dict {
+//    print("\(name) have \(legCount) legs")
+//}
 
-var v1 = Vecter2D(x: 1, y: 1)
-var v2 = Vecter2D(x: 2, y: 2)
-var v3 = Vecter2D(x: 3, y: 3)
-print(v1 +- v2 *^ v3)
+//stride函数的使用
+//for i in stride(from: 0, to: 50, by: 5) {
+//    print(i)
+//}
 
+//for i in stride(from: 0, through: 50, by: 5) {
+//    print(i)
+//}
 
+//var a = 3
+//let b = 5
+//var result = 1
+////遍历的值如果不需要使用可以下划线代替
+//for _ in 1...b {
+//    result *= a
+//}
+//print(result)
 
+//repeat while 先执行一次,再去判断条件
+//var a = 5
+//repeat {
+//    a -= 1
+//    print(a)
+//} while a != 0
 
