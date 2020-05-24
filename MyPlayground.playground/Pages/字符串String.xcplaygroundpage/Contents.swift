@@ -71,3 +71,4 @@ print(string == string1)
 print(string.hasPrefix(string1))
 print(string.hasSuffix("world"))
 
+//: [Next](@next)

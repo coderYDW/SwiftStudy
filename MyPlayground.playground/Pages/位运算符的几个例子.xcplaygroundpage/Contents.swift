@@ -108,3 +108,6 @@ func findOnceNum(nums: [UInt]) -> UInt {
 }
 var nums02: [UInt] = [1,1,1,2,2,2,6]
 print(findOnceNum(nums: nums02))
+
+
+//: [Next](@next)

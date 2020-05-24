@@ -95,3 +95,4 @@ func isIpAdressUseGuard(ipString: String) -> (Int, String) {
 //print(isIpAdressUseGuard(ipString: "101.110.91.110"))
 print(isIpAddress02(ipString: "10.91.91.101"))
 
+//: [Next](@next)

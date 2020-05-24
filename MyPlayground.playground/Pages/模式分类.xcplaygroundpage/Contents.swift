@@ -27,7 +27,7 @@ else {
     print("no value")
 }
 
-////类型转换模式
+//类型转换模式
 protocol Animal {
     var name: String {get} //只有get方法
 }
@@ -62,12 +62,12 @@ for animal in animals {
 }
 
 
-////表达式模式
+//表达式模式
 struct Teacher {
     var name: String
     var salary: Int
 }
-
+//重写 ~= 方法重新处理switch的匹配方式,将使用方法返回的Bool值匹配
 func ~= (patten: Range<Int>, value: Teacher) -> Bool {
     return patten.contains(value.salary)
 }
@@ -83,3 +83,5 @@ case 3000..<6000:
 default:
     print("土豪")
 }
+
+//: [Next](@next)
