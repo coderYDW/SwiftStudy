@@ -193,6 +193,7 @@ intArray06.swapAt(intArray06.startIndex, intArray06.endIndex - 1)
 
 
 //数组的拼接操作
+//非Sequence类数组需要自己编写拼接方法
 //字符串的拼接操作
 let charArray = ["Hello", "world"]
 let se = charArray.joined()
@@ -218,4 +219,71 @@ let result = nestedArray.joined(separator: [-1, -2])
 //[1, 2, 3, -1, -2, 5, 6, 7, -1, -2, 9]
 print(Array(result))
 
-//非Sequence类数组需要自己编写拼接方法
+
+//栈
+struct Stack<T> {
+    
+    private var elements = [T]()
+    
+    var count: Int {
+        return elements.count
+    }
+    
+    var isEmpty: Bool {
+        return elements.isEmpty
+    }
+    
+    mutating func push (_ element:T) {
+        elements.append(element)
+    }
+    
+    mutating func pop () -> T? {
+        return elements.popLast()
+    }
+    
+}
+
+//var stack = Stack<Int>()
+//print(stack.count, stack.isEmpty)
+//stack.push(1)
+//stack.push(3)
+//stack.push(5)
+//print(stack.count, stack.isEmpty)
+//let inta = stack.pop()
+//print(inta ?? 0)
+
+
+//队列
+struct Queue<T> {
+    
+    private var elements = [T]()
+    
+    var count: Int {
+        return elements.count
+    }
+    
+    var isEmpty: Bool {
+        return elements.isEmpty
+    }
+    
+    mutating func enqueue (_ element: T) {
+        elements.append(element)
+    }
+    
+    mutating func dequeue () -> T? {
+        return isEmpty ? nil : elements.removeFirst()
+    }
+    
+}
+
+var queue = Queue<Int>()
+print(queue.count, queue.isEmpty)
+queue.enqueue(1)
+queue.enqueue(3)
+queue.enqueue(5)
+print(queue.count, queue.isEmpty)
+let intb = queue.dequeue()
+print(intb ?? 0)
+
+//尝试实现栈和队列的Sequence协议,使用for-in循环打印
+//尝试优化栈和队列的打印方法
