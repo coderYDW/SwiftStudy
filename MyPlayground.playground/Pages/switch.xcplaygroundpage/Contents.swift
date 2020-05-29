@@ -79,7 +79,7 @@ default:
 }
 
 var a03 = 10
-whileLoop: while a > 0 {
+whileLoop: while a03 > 0 {
     switch a03 {
     case 1:
         print(a03)

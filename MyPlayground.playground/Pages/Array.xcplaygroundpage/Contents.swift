@@ -243,14 +243,14 @@ struct Stack<T> {
     
 }
 
-//var stack = Stack<Int>()
-//print(stack.count, stack.isEmpty)
-//stack.push(1)
-//stack.push(3)
-//stack.push(5)
-//print(stack.count, stack.isEmpty)
-//let inta = stack.pop()
-//print(inta ?? 0)
+var stack = Stack<Int>()
+print(stack.count, stack.isEmpty)
+stack.push(1)
+stack.push(3)
+stack.push(5)
+print(stack.count, stack.isEmpty)
+let inta = stack.pop()
+print(inta ?? 0)
 
 
 //队列
