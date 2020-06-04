@@ -13,5 +13,7 @@
         <page name='String'/>
         <page name='Array'/>
         <page name='Set'/>
+        <page name='Dictionary'/>
+        <page name='Function'/>
     </pages>
 </playground>
