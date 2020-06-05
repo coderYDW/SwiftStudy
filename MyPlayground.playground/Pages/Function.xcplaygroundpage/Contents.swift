@@ -81,3 +81,34 @@ func addTwoNum01(_ num1: Int, _ num2: Int) -> Int {
 printMathResult(addTwoNum01, 3, 0)
 
 
+
+//闭包表达式
+let names = ["zhangsan", "lisi", "wangwu", "zhaoliu", "a"]
+
+print(names)
+
+//函数方式进行排序
+//func backward(_ name1: String, _ name2: String) -> Bool {
+//    return name1 > name2
+//}
+//let sortedNames = names.sorted(by: backward)
+
+//闭包常规模式
+//let sortedNames = names.sorted(by: { (s1: String, s2: String) -> Bool in
+//    return s1 > s2
+//} )
+
+//结合上下文推断类型,可以省略参数类型和返回值类型,形式参数外的小括号也可以省略
+//单一表达式闭包可以隐式返回(可以省略return)
+//let sortedNames = names.sorted(by: { s1, s2 in s1 > s2 })
+
+//使用$进行参数名的简写,可以使用$1,$2,$3等名字来引用实际参数值
+//let sortedNames = names.sorted(by: { $0 > $1 } )
+//大于号定义的函数刚好与sorted函数所需参数一致
+//let sortedNames = names.sorted(by: > )
+
+//尾随闭包,书写在函数形式参数括号外面的表达式,闭包作为函数的最好一个形式参数
+let sortedNames = names.sorted{ $0 > $1 }
+
+print(sortedNames)
+
