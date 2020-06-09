@@ -80,3 +80,95 @@ func eval(_ expression: ArithmeticExpression) -> Int {
 }
 
 print(eval(multipflyExpression))
+
+//为类,结构体和枚举添加属性
+//为类,结构体和枚举添加方法
+
+struct Point {
+    var x: Int = 0
+    var y: Int = 0
+    
+    func printInfo() {
+        print("x is \(x), y is \(y)")
+    }
+    
+    mutating func moveBy(x: Int, y: Int) {
+        self.x += x
+        self.y += y
+    }
+    
+    static func printType() {
+        print("A Point")
+    }
+    
+}
+
+struct Size {
+    var width: Int = 0
+    var height: Int = 0
+}
+
+struct Rect {
+    var origin: Point
+    var size: Size
+    var center: Point {
+        get {
+            return Point(x: origin.x + size.width / 2, y: origin.y + size.height / 2)
+        }
+        //set(newCenter) {
+        //    origin.x = newCenter.x - size.width / 2
+        //    origin.y = newCenter.y - size.height / 2
+        //}
+        //简写的set
+        set {
+            origin.x = newValue.x - size.width / 2
+            origin.y = newValue.y - size.height / 2
+        }
+    }
+}
+
+var p = Point(x: 1, y: 1)
+p.moveBy(x: 2, y: 3)
+p.printInfo()
+Point.printType()
+
+//属性观察者
+
+class StepCounter {
+    var totleSteps: Int = 0 {
+        willSet(newStep) {
+            print("will to \(newStep)")
+        }
+        didSet(oldStep) {
+            print("change from \(oldStep) to \(totleSteps)")
+        }
+    }
+    //这个方法可以被子类重写
+    class func printType() {
+        print("A StepCounter")
+    }
+    
+    static func printType01() {
+        print("A StepCounter")
+    }
+    
+}
+
+//var stepCounter = StepCounter()
+//stepCounter.totleSteps = 10;
+//stepCounter.totleSteps = 100;
+//stepCounter.totleSteps = 1000;
+StepCounter.printType()
+StepCounter.printType01()
+
+var count: Int = 0 {
+    willSet {
+        print("will to \(newValue)")
+    }
+    didSet {
+        print("change from \(oldValue) to \(count)")
+    }
+}
+
+//count = 10
+//count = 20
