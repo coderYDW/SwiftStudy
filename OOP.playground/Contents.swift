@@ -7,7 +7,14 @@ enum CompassPoint: Int {
     case south
     case west
     case north
+    //如果是只读的属性可以删除get关键字和大括号
+    static subscript(index: Int) -> CompassPoint {
+        return CompassPoint(rawValue: index)!
+    }
+    
 }
+
+print(CompassPoint[8])
 
 // 遵循CaseIterable协议可以使用allCases
 // print(CompassPoint.allCases)
@@ -45,7 +52,7 @@ enum Barcode {
 
 var productCode = Barcode.upc(1, 2, 4, 5)
 productCode = .qrcode("dfghjk")
-print(productCode)
+//print(productCode)
 
 switch productCode {
 case let .upc(a, b, c, d):
@@ -79,7 +86,7 @@ func eval(_ expression: ArithmeticExpression) -> Int {
     }
 }
 
-print(eval(multipflyExpression))
+//print(eval(multipflyExpression))
 
 // 为类,结构体和枚举添加属性
 // 为类,结构体和枚举添加方法
@@ -126,10 +133,10 @@ struct Rect {
     }
 }
 
-var p = Point(x: 1, y: 1)
-p.moveBy(x: 2, y: 3)
-p.printInfo()
-Point.printType()
+//var p = Point(x: 1, y: 1)
+//p.moveBy(x: 2, y: 3)
+//p.printInfo()
+//Point.printType()
 
 // 属性观察者
 
@@ -157,8 +164,8 @@ class StepCounter {
 // stepCounter.totleSteps = 10;
 // stepCounter.totleSteps = 100;
 // stepCounter.totleSteps = 1000;
-StepCounter.printType()
-StepCounter.printType01()
+//StepCounter.printType()
+//StepCounter.printType01()
 
 var count: Int = 0 {
     willSet {
@@ -171,3 +178,36 @@ var count: Int = 0 {
 
 // count = 10
 // count = 20
+
+//自定义下表方法
+
+struct Matrix {
+    let rows: Int
+    let cols: Int
+    var grid:[Double]
+    
+    init(rows: Int, cols: Int) {
+        self.rows = rows
+        self.cols = cols
+        self.grid = Array(repeating: 0.0, count: rows * cols)
+        
+    }
+    
+    subscript(row: Int, col: Int) -> Double {
+        get {
+            return grid[row * cols + col]
+        }
+        set {
+            grid[row * cols + col] = newValue
+        }
+    }
+    
+}
+
+var matrix = Matrix(rows: 2, cols: 2)
+matrix[1, 0] = 0.9
+matrix[0, 1] = 1.5
+//print(matrix)
+
+
+
