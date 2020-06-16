@@ -14,7 +14,7 @@ enum CompassPoint: Int {
     
 }
 
-print(CompassPoint[8])
+//print(CompassPoint[8])
 
 // 遵循CaseIterable协议可以使用allCases
 // print(CompassPoint.allCases)
@@ -23,18 +23,18 @@ print(CompassPoint[8])
 let direction = CompassPoint(rawValue: 9)
 
 // 使用switch-case匹配枚举
-switch direction {
-case .east:
-    print("east")
-case .south:
-    print("south")
-case .west:
-    print("west")
-case .north:
-    print("north")
-default:
-    print("none")
-}
+//switch direction {
+//case .east:
+//    print("east")
+//case .south:
+//    print("south")
+//case .west:
+//    print("west")
+//case .north:
+//    print("north")
+//default:
+//    print("none")
+//}
 
 // 枚举可以设置不同类型的原始值
 enum ControlCharater: String {
@@ -54,12 +54,12 @@ var productCode = Barcode.upc(1, 2, 4, 5)
 productCode = .qrcode("dfghjk")
 //print(productCode)
 
-switch productCode {
-case let .upc(a, b, c, d):
-    print("a=\(a),b=\(b),c=\(c),d=\(d)")
-case let .qrcode(str):
-    print(str)
-}
+//switch productCode {
+//case let .upc(a, b, c, d):
+//    print("a=\(a),b=\(b),c=\(c),d=\(d)")
+//case let .qrcode(str):
+//    print(str)
+//}
 
 // 递归枚举
 indirect enum ArithmeticExpression {
@@ -209,5 +209,77 @@ matrix[1, 0] = 0.9
 matrix[0, 1] = 1.5
 //print(matrix)
 
+
+
+//类的初始化和反初始化
+class Person {
+    var name: String
+    var age: Int
+    //可以失败的初始化器
+//    init?(name: String, age: Int) {
+//        if age > 300 {
+//            return nil
+//        }
+//        self.name = name
+//        self.age = age
+//    }
+    
+    //必要初始化器,子类必须实现此初始化器
+    required init(name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
+    
+    convenience init() {
+        self.init(name: "[unnamed]", age: 0)
+    }
+    
+    convenience init(age: Int) {
+        self.init(name: "[unnamed]", age: age)
+    }
+    
+    //类的反初始化器,当类将要释放的时候调用
+    deinit {
+        
+    }
+    
+}
+
+class Teacher: Person {
+    
+    var salary: Int
+    
+    //重写了父类的全部初始化器后,会继承所有父类的便捷初始化器
+//    override init(name: String, age: Int) {
+//        self.salary = 3000
+//        super.init(name: name, age: age)
+//    }
+    //必要初始化器
+    required init(name: String, age: Int) {
+        self.salary = 3000
+        super.init(name: name, age: age)
+    }
+    
+    //如果子类没有指定初始化器,可以继承父类的所有初始化器
+    init(name: String, age: Int, salary: Int) {
+        self.salary = salary //在调用父类前需要初始化子类的属性值
+        super.init(name: name, age: age)
+        self.name = name + "老师" //调用父类后才可以修改父类的值
+        self.test() //只有初始化实例后才可以调用实例方法
+    }
+    
+    convenience init(salary: Int) {
+        self.init(name: "[unnamed]", age: 0, salary: salary)
+        self.salary = salary + 1000 //便捷方法在实现指定初始化器后次啊可以修改属性
+    }
+    
+    func test() {
+        print("teacher test")
+    }
+    
+}
+
+//let teacher = Teacher(age: 20)
+//teacher.test()
 
 
