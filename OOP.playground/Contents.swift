@@ -283,3 +283,42 @@ class Teacher: Person {
 //teacher.test()
 
 
+class Vehicle {
+    //final修饰的属性是不能被继承的
+    final var name: String {
+        return "交通工具"
+    }
+    
+    var speed: Int = 0
+    var desc: String {
+        return "run at speed \(speed)"
+    }
+    func makeNoise() {
+        
+    }
+}
+
+class Car: Vehicle {
+//    override var name: String
+    var gear: Int = 0
+    //继承来的属性可以添加属性观察器
+    override var speed: Int {
+        didSet {
+            gear = (speed / 10) + 1
+        }
+    }
+    //重写属性
+    override var desc: String {
+        return super.desc + " at gear \(gear)"
+    }
+    //重写方法
+    override func makeNoise() {
+         print("恩")
+    }
+}
+
+//var car = Car()
+//car.speed = 36
+//print(car.desc)
+//car.makeNoise()
+
