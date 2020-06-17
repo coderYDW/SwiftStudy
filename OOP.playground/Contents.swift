@@ -282,7 +282,7 @@ class Teacher: Person {
 //let teacher = Teacher(age: 20)
 //teacher.test()
 
-
+//类的继承
 class Vehicle {
     //final修饰的属性是不能被继承的
     final var name: String {
@@ -321,4 +321,40 @@ class Car: Vehicle {
 //car.speed = 36
 //print(car.desc)
 //car.makeNoise()
+
+//类的多态j和类型判断
+
+class MediaItem {
+    var name: String
+    init(name: String) {
+        self.name = name
+    }
+}
+
+class Movie: MediaItem {
+    var directer: String
+    init(name: String, directer: String) {
+        self.directer = directer
+        super.init(name: name)
+    }
+}
+
+class Song: MediaItem {
+    var artist: String
+    init(name: String, artist: String) {
+        self.artist = artist
+        super.init(name: name)
+    }
+}
+
+let arr = [Movie(name: "美人鱼", directer: "周星驰"),
+           Song(name: "烦恼歌", artist: "张学友"),
+           Movie(name: "哪吒之魔童降世", directer: "饺子")]
+
+for item in arr {
+    if let realItem = item as? Movie {
+        print(realItem.directer)
+    }
+}
+
 
