@@ -351,10 +351,75 @@ let arr = [Movie(name: "美人鱼", directer: "周星驰"),
            Song(name: "烦恼歌", artist: "张学友"),
            Movie(name: "哪吒之魔童降世", directer: "饺子")]
 
-for item in arr {
-    if let realItem = item as? Movie {
-        print(realItem.directer)
+//for item in arr {
+//    if let realItem = item as? Movie {
+//        print(realItem.directer)
+//    }
+//}
+
+
+//extension
+//添加计算属性
+extension Double {
+    var km: Double {
+        return self / 1000.0
     }
 }
 
+//print(3000.0.km)
+
+//扩展添加方法
+extension Int {
+    func repeatTask(_ task: () -> ()) {
+        for _ in 0..<self {
+            task()
+        }
+    }
+}
+
+//3.repeatTask {
+//    print("Hello")
+//}
+
+//下标方法
+extension Int {
+    subscript(digitIndex: Int) -> Int {
+        get {
+            var base = 1
+            for _ in 0..<digitIndex {
+                base *= 10
+            }
+            return (self / base) % 10
+        }
+    }
+}
+
+9876543210[7]
+
+extension Int {
+    
+    enum Kind {
+        case zero
+        case positive
+        case negative
+    }
+    
+    var kind: Kind {
+        get {
+            switch self {
+            case 0:
+                return .zero
+            case let x where x > 0:
+                return .positive
+            default:
+                return .negative
+            }
+        }
+    }
+}
+
+//0.kind
+//9.kind
+//var intA = -1
+//intA.kind
 
