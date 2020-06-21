@@ -423,3 +423,204 @@ extension Int {
 //var intA = -1
 //intA.kind
 
+
+//协议
+protocol FirstName {
+    var firstName: String {get}
+}
+
+protocol LastName {
+    var lastName: String {get}
+}
+
+//协议继承
+protocol FullName: FirstName, LastName {
+    var fullName: String {get}
+}
+
+protocol Named {
+    var name: String {get}
+}
+
+protocol Aged {
+    var age: Int {get}
+}
+
+protocol Maled {
+    var male: String {get set}
+    
+}
+
+protocol TypeName {
+    static var typeName: String {get}
+}
+
+//实例方法
+protocol SayHello {
+    func sayHello()
+}
+
+//协议继承和类型方法
+protocol PrintTypeName: TypeName  {
+    static func printTypeName()
+}
+
+//初始化器
+protocol PersonInit: Named, Aged {
+    init(name: String, age: Int, male: String)
+}
+
+protocol AnimalInit: Named, Aged {
+    init(name: String, age: Int)
+}
+
+//遵循多个协议
+struct Person01: Named, Aged, TypeName, PersonInit {
+    
+    var male: String = ""
+    var name: String
+    var age: Int
+    static var typeName: String {
+        return "Person01"
+    }
+    
+    init(name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
+    
+    init(name: String, age: Int, male: String) {
+        self.init(name: name, age: age)
+        self.male = male
+    }
+}
+
+let p01 = Person01(name: "zhangsan", age: 20)
+
+
+
+//协议组合
+func wish( _ to: Named & Aged) {
+    print("name \(to.name) age \(to.age)")
+}
+//wish(p01)
+
+//计算属性
+struct Person02: FullName, SayHello, PrintTypeName, TypeName {
+    
+    var firstName: String
+    var lastName: String
+    var fullName: String {
+        return firstName + " " + lastName
+    }
+    static var typeName: String {
+        return "Person02"
+    }
+//    init(firstName: String, lastName: String) {
+//        self.firstName = firstName
+//        self.lastName = lastName
+//    }
+    
+    func sayHello() {
+        print("Hello, I am \(fullName).")
+    }
+    
+    static func printTypeName() {
+        print("Type name is \(self.typeName)")
+    }
+    
+}
+
+let p02 = Person02(firstName: "Kobe", lastName: "Bryant")
+p02.sayHello()
+Person02.printTypeName()
+//print(p02.fullName)
+
+
+//遵循多个协议
+class Animal: Named, Aged, TypeName, AnimalInit {
+    var name: String = ""
+    var age: Int = 0
+    //类型属性协议
+    class var typeName: String {
+        get {
+            return "Animal"
+        }
+    }
+    
+    required init(name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
+    
+}
+
+//继承父类后遵循指定的协议,继承父类后会继承父类已经遵循的协议
+class Cat: Animal, Maled  {
+    
+    var feetCount: Int = 4
+    var male: String = ""
+    //继承类型属性
+    override class var typeName: String {
+        get {
+            return "Cat"
+        }
+    }
+    
+    init(name: String, age: Int, male: String) {
+        self.male = male
+        self.feetCount = 4
+        super.init(name: name, age: age)
+    }
+    
+    required init(name: String, age: Int) {
+        self.male = ""
+        self.feetCount = 4
+        super.init(name: name, age: age)
+    }
+}
+
+let cat = Cat(name: "xiaohei", age: 3, male: "male")
+//print(Cat.typeName)
+//wish(cat)
+
+protocol TextRepresentable {
+    var desc: String {get}
+}
+//扩展添加协议
+//extension Person01: TextRepresentable {
+//    var desc: String {
+//        return "My name is \(name), I am \(age) years old."
+//    }
+//}
+
+//扩展添加属性符合协议,可以在后面添加协议声明
+extension Person01 {
+    var desc: String {
+        return "My name is \(name), I am \(age) years old."
+    }
+}
+
+//协议声明
+extension Person01: TextRepresentable {}
+
+//print(p01.desc)
+
+//对类型进行扩展后的元素进行条件限制
+//extension Array: TextRepresentable where Element: TextRepresentable {
+//    var desc: String {
+//        let itemDesc = self.map{ $0.desc }
+//        return itemDesc.joined(separator: "\n")
+//    }
+//}
+
+//对协议进行扩展
+extension Collection where Iterator.Element: TextRepresentable {
+    var desc: String {
+        let itemDesc = self.map{ $0.desc }
+        return itemDesc.joined(separator: " | ")
+    }
+}
+
+let persons = [Person01(name: "zs", age: 20), Person01(name: "ls", age: 30)]
+//print(persons.desc)
