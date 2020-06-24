@@ -75,4 +75,42 @@ struct Queue<Element> {
 //queue01.dequeue()
 
 
+//泛型的类型约束
 
+//T必须遵循Equatable才能进行比较操作
+func firstIndex<T: Comparable>(of valueToFind: T, _ array: [T]) -> Int? {
+    for (index, value) in array.enumerated() {
+        if valueToFind == value {
+            return index
+        }
+    }
+    return nil
+}
+
+let arr = ["a", "b", "c", "v", "b", "e"]
+firstIndex(of: "e", arr)
+
+//T必须是指定的类或者子类
+class SomeClass {
+    var someString: String = ""
+    func someFunc() {
+        print("someFunc")
+    }
+}
+
+class SomeSubClass: SomeClass {
+    var subString: String = ""
+    override func someFunc() {
+        print("someSubFunc")
+    }
+}
+
+func someMethed<T: SomeClass>(someOne: T) {
+    someOne.someFunc()
+}
+
+//let someOne = SomeClass()
+//someMethed(someOne: someOne)
+//
+//let someTwo = SomeSubClass()
+//someMethed(someOne: someTwo)
