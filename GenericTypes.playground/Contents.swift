@@ -38,16 +38,16 @@ extension Stack {
     }
 }
 
-var stack01 = Stack<String>()
-stack01.push("a")
-stack01.push("b")
-stack01.push("c")
-stack01.topItem
-stack01.pop()
-stack01.topItem
-stack01.pop()
-stack01.pop()
-stack01.pop()
+//var stack01 = Stack<String>()
+//stack01.push("a")
+//stack01.push("b")
+//stack01.push("c")
+//stack01.topItem
+//stack01.pop()
+//stack01.topItem
+//stack01.pop()
+//stack01.pop()
+//stack01.pop()
 
 
 struct Queue<Element> {
@@ -114,3 +114,70 @@ func someMethed<T: SomeClass>(someOne: T) {
 //
 //let someTwo = SomeSubClass()
 //someMethed(someOne: someTwo)
+
+
+//协议:关联类型
+protocol Container {
+    //协议中定义泛型的方法(关联类型),可以进行类型约束
+    associatedtype ItemType: Hashable
+    mutating func append(_ item: ItemType)
+    var count: Int { get }
+    subscript(i: Int) -> ItemType { get }
+}
+
+//在关联类型约束里面使用协议,协议可以作为它自身的要求出现
+protocol suffixableContainer: Container {
+    associatedtype suffix: suffixableContainer where suffix.ItemType == ItemType
+    //返回Container中的前面的指定size的Container,相当于截取子Container
+    func suffix(_ size: Int) -> suffix
+}
+
+//遵循关联类型的协议,必须实现必要的方法,其他方法可以选择实现
+struct Stack01<Element: Hashable>: Container {
+    
+    //可以省略typealias,Swift会自动推断
+    //typealias ItemType = Element
+    
+    private var items = [Element]()
+    
+    var count: Int {
+        return items.count
+    }
+    
+    var isEmpty: Bool {
+        return items.isEmpty
+    }
+    
+    mutating func append(_ item: Element) {
+        items.append(item)
+    }
+    
+    mutating func push(_ item: Element) {
+        items.append(item)
+    }
+    
+    mutating func pop() -> Element? {
+        //return isEmpty ? nil : items.removeLast()
+        return items.popLast()
+    }
+    
+    subscript(i: Int) -> Element {
+        return items[i]
+    }
+    
+//    func suffix(_ size: Int) -> Stack01 {
+//        return self.
+//    }
+    
+}
+
+//var stack01 = Stack01<String>()
+//stack01.append("a")
+//stack01.append("b")
+//stack01.count
+//stack01[1]
+
+
+
+
+
