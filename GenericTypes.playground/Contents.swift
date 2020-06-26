@@ -117,9 +117,75 @@ func someMethed<T: SomeClass>(someOne: T) {
 
 
 //协议:关联类型
+//protocol Container {
+//    //协议中定义泛型的方法(关联类型),可以进行类型约束
+//    associatedtype ItemType: Hashable
+//    mutating func append(_ item: ItemType)
+//    var count: Int { get }
+//    subscript(i: Int) -> ItemType { get }
+//}
+//
+////在关联类型约束里面使用协议,协议可以作为它自身的要求出现
+//protocol suffixableContainer: Container {
+//    associatedtype suffix: suffixableContainer where suffix.ItemType == ItemType
+//    //返回Container中的前面的指定size的Container,相当于截取子Container
+//    func suffixFunc(_ size: Int) -> suffix
+//}
+//
+////遵循关联类型的协议,必须实现必要的方法,其他方法可以选择实现
+//struct Stack01<Element: Hashable>: suffixableContainer {
+//
+//    //可以省略typealias,Swift会自动推断
+//    //typealias ItemType = Element
+//
+//    private var items = [Element]()
+//
+//    //必须实现
+//    var count: Int {
+//        return items.count
+//    }
+//
+//    mutating func append(_ item: Element) {
+//        items.append(item)
+//    }
+//
+//    subscript(i: Int) -> Element {
+//        return items[i]
+//    }
+//
+//    //这里省略会报错
+//    typealias suffix = Stack01<Element>
+//
+//    func suffixFunc(_ size: Int) -> suffix {
+//        var stack = Stack01<Element>()
+//        for (index, item) in items.enumerated() {
+//            if index < size {
+//                stack.append(item)
+//            }
+//        }
+//        return stack
+//    }
+//
+//
+//    //选择实现
+//    var isEmpty: Bool {
+//        return items.isEmpty
+//    }
+//
+//    mutating func push(_ item: Element) {
+//        items.append(item)
+//    }
+//
+//    mutating func pop() -> Element? {
+//        //return isEmpty ? nil : items.removeLast()
+//        return items.popLast()
+//    }
+//
+//}
+
 protocol Container {
     //协议中定义泛型的方法(关联类型),可以进行类型约束
-    associatedtype ItemType: Hashable
+    associatedtype ItemType
     mutating func append(_ item: ItemType)
     var count: Int { get }
     subscript(i: Int) -> ItemType { get }
@@ -129,27 +195,47 @@ protocol Container {
 protocol suffixableContainer: Container {
     associatedtype suffix: suffixableContainer where suffix.ItemType == ItemType
     //返回Container中的前面的指定size的Container,相当于截取子Container
-    func suffix(_ size: Int) -> suffix
+    func suffixFunc(_ size: Int) -> suffix
 }
 
 //遵循关联类型的协议,必须实现必要的方法,其他方法可以选择实现
-struct Stack01<Element: Hashable>: Container {
+struct Stack01<Element>: suffixableContainer {
     
     //可以省略typealias,Swift会自动推断
     //typealias ItemType = Element
     
     private var items = [Element]()
     
+    //必须实现
     var count: Int {
         return items.count
     }
     
-    var isEmpty: Bool {
-        return items.isEmpty
-    }
-    
     mutating func append(_ item: Element) {
         items.append(item)
+    }
+    
+    subscript(i: Int) -> Element {
+        return items[i]
+    }
+    
+    //这里省略会报错
+    typealias suffix = Stack01<Element>
+    
+    func suffixFunc(_ size: Int) -> suffix {
+        var stack = Stack01<Element>()
+        for (index, item) in items.enumerated() {
+            if index < size {
+                stack.append(item)
+            }
+        }
+        return stack
+    }
+    
+    
+    //选择实现
+    var isEmpty: Bool {
+        return items.isEmpty
     }
     
     mutating func push(_ item: Element) {
@@ -161,23 +247,46 @@ struct Stack01<Element: Hashable>: Container {
         return items.popLast()
     }
     
-    subscript(i: Int) -> Element {
-        return items[i]
-    }
-    
-//    func suffix(_ size: Int) -> Stack01 {
-//        return self.
-//    }
-    
 }
 
-//var stack01 = Stack01<String>()
-//stack01.append("a")
-//stack01.append("b")
-//stack01.count
-//stack01[1]
 
+var stack01 = Stack01<String>()
+stack01.append("a")
+stack01.append("b")
+stack01.count
+stack01[1]
+var stack02 = stack01.suffixFunc(1)
+stack02.append("c")
 
+//为泛型定义要求
+func isEqualBetween<C1: Container, C2: Container>(_ someContainer: C1, _ anotherContainer: C2) -> Bool
+    where C1.ItemType == C2.ItemType, C1.ItemType: Equatable {
+        
+        if someContainer.count != anotherContainer.count {
+            return false
+        }
+        
+        for i in 0..<someContainer.count {
+            if someContainer[i] != anotherContainer[i] {
+                return false
+            }
+        }
+        
+        return true
+        
+}
 
+isEqualBetween(stack01, stack02)
 
-
+//泛型下标
+extension Container {
+    //定义泛型下标,使用where约束泛型类型
+    subscript<Indices: Sequence>(indices: Indices) -> [ItemType]
+        where Indices.Iterator.Element == Int {
+            var result = [ItemType]()
+            for index in indices {
+                result.append(self[index])
+            }
+            return result
+    }
+}
