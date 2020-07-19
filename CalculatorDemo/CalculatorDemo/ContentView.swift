@@ -15,28 +15,32 @@ struct ContentView: View {
             
             Spacer()
             
-            Text("0")
-                .font(.system(size: 76))
-                .minimumScaleFactor(0.5)
-                .padding(.trailing, 24)
-                .lineLimit(1)
-                .frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
-                .foregroundColor(.primary)
+            HStack {
+                Spacer()
+                Text("0")
+                    .font(.system(size: 76))
+                    .minimumScaleFactor(0.5)
+                    .padding(.trailing, 24)
+                    .lineLimit(1)
+                //.frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
+            }
             
             CalculatorButtonPad()
                 .padding(.bottom)
-            
         }
-        .scaleEffect(scale)
+        
+        
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            //快速查看深色布局情况
-            ContentView().environment(\.colorScheme, .dark)
+            //快速查看深色布局情况 environment(\.colorScheme, .dark)
+            ContentView()
             ContentView().previewDevice("iPhone SE")
+            //ContentView().previewDevice("iPhone 11 Pro")
+//            ContentView().previewDevice("iPad Pro (11-inch)")
         }
     }
 }
@@ -104,7 +108,7 @@ enum CalculatorButtonItem {
     
 }
 
-extension CalculatorButtonItem: Hashable {
+extension CalculatorButtonItem {
     
     var title: String {
         switch self {
@@ -128,13 +132,6 @@ extension CalculatorButtonItem: Hashable {
         }
     }
     
-    var size: CGSize {
-        if case .digit(let value) = self, value == 0 {
-            return CGSize(width: 88 * 2 + 8, height: 88)
-        }
-        return CGSize(width: 88, height: 88)
-    }
-    
     var fontSize: CGFloat {
         return 44.0
     }
@@ -150,6 +147,19 @@ extension CalculatorButtonItem: Hashable {
         }
     }
     
+}
+
+extension CalculatorButtonItem: Hashable {}
+
+extension CalculatorButtonItem {
+    var size: CGSize {
+        let scale: CGFloat = UIScreen.main.bounds.width / 414
+        let width = 88 * scale > 100 ? 100 : 88 * scale
+        if case .digit(let value) = self, value == 0 {
+            return CGSize(width: width * 2 + 8, height: width)
+        }
+        return CGSize(width: width, height: width)
+    }
 }
 
 struct CalculatorButtonRow: View {
