@@ -42,19 +42,22 @@ struct ContentView_Previews: PreviewProvider {
 struct CalculatorButton: View {
     
     let title: String
+    let titleColorName: String
     let fontSize: CGFloat = 38
     let size: CGSize
     let backgroundColerName: String
     let action: () -> Void
     
+    //如果background放在cornerRadius后面,圆角就会失效
+    //font和foregroundColor位置调换不影响
     var body: some View {
         Button(action: action) {
             Text(title)
                 .font(.system(size: fontSize))
-                .foregroundColor(.white)
+                .foregroundColor(Color(titleColorName))
                 .frame(width:size.width, height: size.height)
                 .background(Color(backgroundColerName))
-                .cornerRadius(size.width/2)
+                .cornerRadius(size.width / 2)
         }
     }
 }
@@ -97,6 +100,15 @@ extension CalculatorButtonItem: Hashable {
         }
     }
     
+    var titleColorName: String {
+        switch self {
+        case .command:
+            return "commandTitle"
+        default:
+            return "normalTitle"
+        }
+    }
+    
     var size: CGSize {
         if case .digit(let value) = self, value == 0 {
             return CGSize(width: 88 * 2 + 8, height: 88)
@@ -129,6 +141,7 @@ struct CalculatorButtonRow: View {
         HStack {
             ForEach(row, id: \.self) { item in
                 CalculatorButton(title: item.title,
+                                 titleColorName: item.titleColorName,
                                  size: item.size,
                                  backgroundColerName: item.backgroundColorName)
                 {
