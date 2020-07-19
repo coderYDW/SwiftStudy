@@ -11,6 +11,9 @@ import SwiftUI
 let scale: CGFloat = UIScreen.main.bounds.width / 414
 
 struct ContentView: View {
+    
+    @State private var brain: CalculatorBrain = .left("0")
+    
     var body: some View {
         VStack(spacing: 12) {
             
@@ -18,7 +21,7 @@ struct ContentView: View {
             
             HStack {
                 Spacer()
-                Text("0")
+                Text(brain.output)
                     .font(.system(size: 76))
                     .minimumScaleFactor(0.5)
                     .padding(.trailing, 24 * scale)
@@ -26,7 +29,11 @@ struct ContentView: View {
                 //.frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
             }
             
-            CalculatorButtonPad()
+//            Button("Test") {
+//                self.brain = .left("1.23")
+//            }
+            
+            CalculatorButtonPad(brain: $brain)
                 .padding(.bottom)
         }
         //.scaleEffect(scale)
@@ -89,6 +96,8 @@ struct CalculatorButton: View {
 
 struct CalculatorButtonRow: View {
     
+    @Binding var brain: CalculatorBrain
+    
     let row: [CalculatorButtonItem]
     
     var body: some View {
@@ -99,7 +108,7 @@ struct CalculatorButtonRow: View {
                                  size: item.size,
                                  backgroundColerName: item.backgroundColorName)
                 {
-                    print(item.title)
+                    self.brain = self.brain.apply(item: item)
                 }
             }
         }
@@ -107,6 +116,9 @@ struct CalculatorButtonRow: View {
 }
 
 struct CalculatorButtonPad: View {
+    
+    @Binding var brain: CalculatorBrain
+    
     let rows: [[CalculatorButtonItem]] =  [
         [.command(.clear), .command(.flip), .command(.percent), .op(.divide)],
         [.digit(7), .digit(8), .digit(9), .op(.multiply)],
@@ -117,7 +129,7 @@ struct CalculatorButtonPad: View {
     var body: some View {
         VStack(spacing: 8) {
             ForEach(rows, id: \.self) { item in
-                CalculatorButtonRow(row: item)
+                CalculatorButtonRow(brain: self.$brain, row: item)
             }
         }
     }
