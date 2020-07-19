@@ -60,6 +60,23 @@ struct CalculatorButton: View {
                 .cornerRadius(size.width / 2)
         }
     }
+    
+//    var body: some View {
+//        //先写的在下面
+//        Button(action: action) {
+//            ZStack {
+//                Circle()
+//                    .frame(width:size.width, height: size.height)
+//                    .foregroundColor(Color(backgroundColerName))
+//
+//                Text(title)
+//                    .font(.system(size: fontSize))
+//                    .foregroundColor(Color(titleColorName))
+//            }
+//        }
+//
+//    }
+    
 }
 
 enum CalculatorButtonItem {
