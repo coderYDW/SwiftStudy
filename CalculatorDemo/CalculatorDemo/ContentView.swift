@@ -21,6 +21,7 @@ struct ContentView: View {
                 .padding(.trailing, 24)
                 .lineLimit(1)
                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
+                .foregroundColor(.primary)
             
             CalculatorButtonPad()
                 .padding(.bottom)
@@ -33,8 +34,9 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView()
-//            ContentView().previewDevice("iPhone SE")
+            //快速查看深色布局情况
+            ContentView().environment(\.colorScheme, .dark)
+            ContentView().previewDevice("iPhone SE")
         }
     }
 }
