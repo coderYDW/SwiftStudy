@@ -8,8 +8,9 @@
 
 import SwiftUI
 
+let scale: CGFloat = UIScreen.main.bounds.width / 414
+
 struct ContentView: View {
-    let scale: CGFloat = UIScreen.main.bounds.width / 414
     var body: some View {
         VStack(spacing: 12) {
             
@@ -20,7 +21,7 @@ struct ContentView: View {
                 Text("0")
                     .font(.system(size: 76))
                     .minimumScaleFactor(0.5)
-                    .padding(.trailing, 24)
+                    .padding(.trailing, 24 * scale)
                     .lineLimit(1)
                 //.frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
             }
@@ -28,7 +29,7 @@ struct ContentView: View {
             CalculatorButtonPad()
                 .padding(.bottom)
         }
-        
+        //.scaleEffect(scale)
         
     }
 }
@@ -38,9 +39,10 @@ struct ContentView_Previews: PreviewProvider {
         Group {
             //快速查看深色布局情况 environment(\.colorScheme, .dark)
             ContentView()
-            ContentView().previewDevice("iPhone SE")
+            //ContentView().previewDevice("iPhone SE")
+            //ContentView().previewDevice("iPad Air 2")
             //ContentView().previewDevice("iPhone 11 Pro")
-//            ContentView().previewDevice("iPad Pro (11-inch)")
+            //ContentView().previewDevice("iPad Pro (11-inch)")
         }
     }
 }
@@ -59,7 +61,7 @@ struct CalculatorButton: View {
     var body: some View {
         Button(action: action) {
             Text(title)
-                .font(.system(size: fontSize))
+                .font(.system(size: fontSize * scale))
                 .foregroundColor(Color(titleColorName))
                 .frame(width:size.width, height: size.height)
                 .background(Color(backgroundColerName))
@@ -153,12 +155,12 @@ extension CalculatorButtonItem: Hashable {}
 
 extension CalculatorButtonItem {
     var size: CGSize {
-        let scale: CGFloat = UIScreen.main.bounds.width / 414
-        let width = 88 * scale > 100 ? 100 : 88 * scale
+        let width = 88 * scale
+        let height = 88 * scale
         if case .digit(let value) = self, value == 0 {
-            return CGSize(width: width * 2 + 8, height: width)
+            return CGSize(width: width * 2 + 8, height: height)
         }
-        return CGSize(width: width, height: width)
+        return CGSize(width: width, height: height)
     }
 }
 
