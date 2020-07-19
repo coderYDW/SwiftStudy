@@ -22,7 +22,7 @@ enum CalculatorButtonItem {
     enum Command: String {
         case clear = "AC"
         case flip = "+/-"
-        case persent = "%"
+        case percent = "%"
     }
     
     case digit(Int)
