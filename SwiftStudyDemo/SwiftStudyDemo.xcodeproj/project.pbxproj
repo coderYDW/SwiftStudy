@@ -15,6 +15,7 @@
 		181DACB924C857AB00E84B73 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 181DACB724C857AB00E84B73 /* LaunchScreen.storyboard */; };
 		181DACC424C857AB00E84B73 /* SwiftStudyDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181DACC324C857AB00E84B73 /* SwiftStudyDemoTests.swift */; };
 		181DACCF24C857AB00E84B73 /* SwiftStudyDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181DACCE24C857AB00E84B73 /* SwiftStudyDemoUITests.swift */; };
+		E4E69F0E24C8837D00D98863 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E69F0D24C8837D00D98863 /* Error.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		181DACCA24C857AB00E84B73 /* SwiftStudyDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftStudyDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		181DACCE24C857AB00E84B73 /* SwiftStudyDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftStudyDemoUITests.swift; sourceTree = "<group>"; };
 		181DACD024C857AB00E84B73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E4E69F0D24C8837D00D98863 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				181DACB524C857AB00E84B73 /* Assets.xcassets */,
 				181DACB724C857AB00E84B73 /* LaunchScreen.storyboard */,
 				181DACBA24C857AB00E84B73 /* Info.plist */,
+				E4E69F0D24C8837D00D98863 /* Error.swift */,
 			);
 			path = SwiftStudyDemo;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4E69F0E24C8837D00D98863 /* Error.swift in Sources */,
 				181DACB124C857A500E84B73 /* ViewController.swift in Sources */,
 				181DACAD24C857A500E84B73 /* AppDelegate.swift in Sources */,
 				181DACAF24C857A500E84B73 /* SceneDelegate.swift in Sources */,
@@ -437,6 +441,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VYH2KESH9R;
 				INFOPLIST_FILE = SwiftStudyDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -455,6 +460,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VYH2KESH9R;
 				INFOPLIST_FILE = SwiftStudyDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -7,21 +7,18 @@
 //
 
 import UIKit
-import SwiftUI
-
-
-
-
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let error = ErrorDemo()
+        error.test()
+        error.optionalTry()
+        error.catchForSpecialThrow()
+        
     }
-
     
-    
-
 }
 
