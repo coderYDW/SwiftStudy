@@ -99,4 +99,28 @@ whileLoop: while a03 > 0 {
     a03 -= 1
 }
 
+enum ServerResponse {
+    case Result(String, String)
+    case Failure(String)
+}
+
+let success = ServerResponse.Result("6:00 am", "8:09 pm")
+let failure = ServerResponse.Failure("Out of cheese.")
+
+//前面使用let
+switch success {
+case let .Result(sunrise, sunset):
+    print("Sunrise is at \(sunrise) and sunset is at \(sunset).")
+case let .Failure(message):
+    print("Failure...  \(message)")
+}
+
+//后面使用let
+switch failure {
+case .Result(let sunrise, let sunset):
+    print("Sunrise is at \(sunrise) and sunset is at \(sunset).")
+case .Failure(let message):
+    print("Failure...  \(message)")
+}
+
 //: [Next](@next)
