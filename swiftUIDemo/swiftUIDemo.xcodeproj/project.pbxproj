@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		181DACDD24C9196900E84B73 /* PropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181DACDC24C9196900E84B73 /* PropertyWrapper.swift */; };
 		E412A93124B20A4500439268 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E412A93024B20A4500439268 /* MapView.swift */; };
 		E412A93324B20F4000439268 /* AnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E412A93224B20F4000439268 /* AnimationView.swift */; };
 		E4F26B1F24B2003A00862318 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F26B1E24B2003A00862318 /* AppDelegate.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		181DACDC24C9196900E84B73 /* PropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyWrapper.swift; sourceTree = "<group>"; };
 		E412A93024B20A4500439268 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E412A93224B20F4000439268 /* AnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationView.swift; sourceTree = "<group>"; };
 		E4F26B1B24B2003A00862318 /* swiftUIDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swiftUIDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +70,7 @@
 				E4F26B3624B206D100862318 /* CircleImage.swift */,
 				E412A93024B20A4500439268 /* MapView.swift */,
 				E412A93224B20F4000439268 /* AnimationView.swift */,
+				181DACDC24C9196900E84B73 /* PropertyWrapper.swift */,
 				E4F26B2424B2003C00862318 /* Assets.xcassets */,
 				E4F26B2924B2003C00862318 /* LaunchScreen.storyboard */,
 				E4F26B2C24B2003C00862318 /* Info.plist */,
@@ -157,6 +160,7 @@
 			files = (
 				E4F26B1F24B2003A00862318 /* AppDelegate.swift in Sources */,
 				E4F26B3724B206D100862318 /* CircleImage.swift in Sources */,
+				181DACDD24C9196900E84B73 /* PropertyWrapper.swift in Sources */,
 				E412A93124B20A4500439268 /* MapView.swift in Sources */,
 				E412A93324B20F4000439268 /* AnimationView.swift in Sources */,
 				E4F26B2124B2003A00862318 /* SceneDelegate.swift in Sources */,

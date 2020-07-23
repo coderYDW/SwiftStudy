@@ -8,38 +8,6 @@
 
 import SwiftUI
 
-//属性包装
-@propertyWrapper struct Converter {
-    
-    let from: String
-    let to: String
-    let rate: Double
-    
-    var value: Double
-    //自身值
-    var wrappedValue: String {
-        get {
-            "\(from)\(value)"
-        }
-        set {
-            value = Double(newValue) ?? -1
-        }
-    }
-    //使用$访问
-    var projectedValue: String {
-        return "\(to)\(value * rate)"
-    }
-    
-    init(initialValue: String, from: String, to: String, rate: Double) {
-        self.rate = rate
-        self.value = 0
-        self.from = from
-        self.to = to
-        self.wrappedValue = initialValue
-    }
-    
-}
-
 struct ContentView: View {
     
     @Converter(initialValue: "100", from: "USD", to: "CNY", rate: 6.88) var usd_cny
