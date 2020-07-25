@@ -7,12 +7,14 @@
 //
 
 import SwiftUI
+import Combine
 
 let scale: CGFloat = UIScreen.main.bounds.width / 414
 
 struct ContentView: View {
     
-    @State private var brain: CalculatorBrain = .left("0")
+    //@State private var brain: CalculatorBrain = .left("0")
+    @ObservedObject var model = CalculatorModel()
     
     var body: some View {
         VStack(spacing: 12) {
@@ -21,7 +23,7 @@ struct ContentView: View {
             
             HStack {
                 Spacer()
-                Text(brain.output)
+                Text(model.brain.output)
                     .font(.system(size: 76))
                     .minimumScaleFactor(0.5)
                     .padding(.trailing, 24 * scale)
@@ -33,7 +35,7 @@ struct ContentView: View {
 //                self.brain = .left("1.23")
 //            }
             
-            CalculatorButtonPad(brain: $brain)
+            CalculatorButtonPad(brain: $model.brain)
                 .padding(.bottom)
         }
         //.scaleEffect(scale)

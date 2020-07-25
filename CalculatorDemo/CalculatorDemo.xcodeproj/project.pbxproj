@@ -15,6 +15,7 @@
 		E41F827F24C3D6D000303C2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E41F827E24C3D6D000303C2E /* Assets.xcassets */; };
 		E41F828224C3D6D000303C2E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E41F828124C3D6D000303C2E /* Preview Assets.xcassets */; };
 		E41F828524C3D6D000303C2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E41F828324C3D6D000303C2E /* LaunchScreen.storyboard */; };
+		E4B5D26024CBC00600AC4FBD /* CalculatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B5D25F24CBC00600AC4FBD /* CalculatorModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		E41F828124C3D6D000303C2E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E41F828424C3D6D000303C2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E41F828624C3D6D000303C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E4B5D25F24CBC00600AC4FBD /* CalculatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				E41F827C24C3D6CD00303C2E /* ContentView.swift */,
 				E409022224C4836F00393A7A /* CalculatorButtonItem.swift */,
 				E409022424C484C600393A7A /* CalculatorBrain.swift */,
+				E4B5D25F24CBC00600AC4FBD /* CalculatorModel.swift */,
 				E41F827E24C3D6D000303C2E /* Assets.xcassets */,
 				E41F828324C3D6D000303C2E /* LaunchScreen.storyboard */,
 				E41F828624C3D6D000303C2E /* Info.plist */,
@@ -155,6 +158,7 @@
 				E41F827924C3D6CD00303C2E /* AppDelegate.swift in Sources */,
 				E41F827B24C3D6CD00303C2E /* SceneDelegate.swift in Sources */,
 				E409022324C4836F00393A7A /* CalculatorButtonItem.swift in Sources */,
+				E4B5D26024CBC00600AC4FBD /* CalculatorModel.swift in Sources */,
 				E409022524C484C600393A7A /* CalculatorBrain.swift in Sources */,
 				E41F827D24C3D6CD00303C2E /* ContentView.swift in Sources */,
 			);
