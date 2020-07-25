@@ -37,7 +37,7 @@ struct ContentView: View {
             Button("操作履历:\(model.history.count)") {
                 self.editingHistory = true
             }.sheet(isPresented: self.$editingHistory) {
-                HistoryView(model: self.model)
+                HistoryView(model: self.model, editingHistory: self.$editingHistory)
             }
             
             HStack {
