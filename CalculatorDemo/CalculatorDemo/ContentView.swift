@@ -22,7 +22,11 @@ struct ContentView: View {
     //通过EnvironmentObject全局变量,无需传递,类似单例
     @EnvironmentObject var model: CalculatorModel
     
+    //显示履历
     @State private var editingHistory = false
+    
+    //alert计算公式
+    @State private var showingResult = false
     
     var body: some View {
         
@@ -43,7 +47,24 @@ struct ContentView: View {
                     .minimumScaleFactor(0.5)
                     .padding(.trailing, 24 * scale)
                     .lineLimit(1)
-                //.frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
+                    //.frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
+                    .onTapGesture {
+                        self.showingResult = true
+                }.alert(isPresented: self.$showingResult) {
+                    
+//                    Alert(title: Text(self.model.historyDetail),
+//                          message: Text(self.model.brain.output),
+//                          dismissButton: .default(Text("OK")))
+                    
+                    Alert(title: Text(model.historyDetail),
+                          message: Text(model.brain.output),
+                          primaryButton: .default(Text("取消")),
+                          secondaryButton: .default(Text("复制"), action: {
+                            UIPasteboard.general.string = self.model.brain.output
+                          }))
+                    
+                }
+                
             }
             
             //通过ObservedObject监听代码

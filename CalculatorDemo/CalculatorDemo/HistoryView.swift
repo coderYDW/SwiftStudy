@@ -41,8 +41,30 @@ struct HistoryView: View {
     }
 }
 
+struct AlertHistoryView: View {
+    
+    @ObservedObject var model: CalculatorModel
+    
+    var body: some View {
+        
+        VStack {
+            
+            if model.totalCount == 0 {
+                Text("没有履历").font(.headline)
+            } else {
+                Text("\(model.historyDetail)").lineLimit(nil)
+                Text("\(model.brain.output)")
+            }
+            
+        }.padding()
+        
+    }
+}
+
+
+
 //struct HistoryView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        HistoryView(model: self.model)
+//        HistoryView()
 //    }
 //}
