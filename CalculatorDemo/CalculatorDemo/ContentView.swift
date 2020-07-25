@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import Combine
 
 let scale: CGFloat = UIScreen.main.bounds.width / 414
 
