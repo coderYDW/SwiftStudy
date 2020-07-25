@@ -16,7 +16,11 @@ struct ContentView: View {
     //所有操作和状态改变都是和当前view挂钩,不适合多个view共享
     //@State private var brain: CalculatorBrain = .left("0")
     
-    @ObservedObject var model = CalculatorModel()
+    //通过ObservedObject监听改变后刷新视图
+    //@ObservedObject var model = CalculatorModel()
+    
+    //通过EnvironmentObject全局变量,无需传递,类似单例
+    @EnvironmentObject var model: CalculatorModel
     
     @State private var editingHistory = false
     
@@ -42,10 +46,12 @@ struct ContentView: View {
                 //.frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
             }
             
-            CalculatorButtonPad(model: model)
-                .padding(.bottom)
+            //通过ObservedObject监听代码
+            //CalculatorButtonPad(model: model).padding(.bottom)
+            
+            CalculatorButtonPad().padding(.bottom)
+            
         }
-        //.scaleEffect(scale)
         
     }
 }
@@ -53,8 +59,10 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            //快速查看深色布局情况 environment(\.colorScheme, .dark)
-            ContentView()
+            //快速查看深色布局情况 .environment(\.colorScheme, .dark)
+            //ContentView()
+            //通过EnvironmentObject全局变量,预览需要传入参数
+            ContentView().environmentObject(CalculatorModel())
             //ContentView().previewDevice("iPhone SE")
             //ContentView().previewDevice("iPad Air 2")
             //ContentView().previewDevice("iPhone 11 Pro")
@@ -85,28 +93,18 @@ struct CalculatorButton: View {
         }
     }
     
-//    var body: some View {
-//        //先写的在下面
-//        Button(action: action) {
-//            ZStack {
-//                Circle()
-//                    .frame(width:size.width, height: size.height)
-//                    .foregroundColor(Color(backgroundColerName))
-//
-//                Text(title)
-//                    .font(.system(size: fontSize))
-//                    .foregroundColor(Color(titleColorName))
-//            }
-//        }
-//
-//    }
-    
 }
 
 struct CalculatorButtonRow: View {
     
-//    @Binding var brain: CalculatorBrain
-    var model: CalculatorModel
+    //通过state监听代码
+    //@Binding var brain: CalculatorBrain
+    
+    //通过ObservedObject监听代码
+    //var model: CalculatorModel
+    
+    //通过EnvironmentObject监听代码
+    @EnvironmentObject var model: CalculatorModel
     
     let row: [CalculatorButtonItem]
     
@@ -127,8 +125,11 @@ struct CalculatorButtonRow: View {
 
 struct CalculatorButtonPad: View {
     
-//    @Binding var brain: CalculatorBrain
-    var model: CalculatorModel
+    //通过state监听代码
+    //@Binding var brain: CalculatorBrain
+    
+    //通过ObservedObject监听代码
+    //var model: CalculatorModel
     
     let rows: [[CalculatorButtonItem]] =  [
         [.command(.clear), .command(.flip), .command(.percent), .op(.divide)],
@@ -140,7 +141,12 @@ struct CalculatorButtonPad: View {
     var body: some View {
         VStack(spacing: 8) {
             ForEach(rows, id: \.self) { item in
-                CalculatorButtonRow(model: self.model, row: item)
+                
+                //通过ObservedObject监听代码
+                //CalculatorButtonRow(model: self.model, row: item)
+                
+                //通过EnvironmentObject监听代码
+                CalculatorButtonRow(row: item)
             }
         }
     }
