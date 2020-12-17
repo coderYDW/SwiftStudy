@@ -10,3 +10,12 @@ func logIfTrue(_ predicate: @autoclosure () -> Bool) {
 
 //有@autoclosure
 logIfTrue(2 > 1)
+
+func ?? <T> (optional: T?, defaultValue: @autoclosure () -> T) -> T {
+    switch optional {
+    case .some(let value):
+        return value
+    default:
+        return defaultValue()
+    }
+}
