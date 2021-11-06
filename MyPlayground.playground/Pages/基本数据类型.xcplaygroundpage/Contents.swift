@@ -78,3 +78,10 @@ import PlaygroundSupport
 
 
 //: [Next](@next)
+
+// 本电脑Int是Int64
+Int.max // 9223372036854775807
+Int32.max // 2147483647
+Int64.max // 9223372036854775807
+
+
